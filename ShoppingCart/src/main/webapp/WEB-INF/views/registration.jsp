@@ -3,8 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -13,39 +12,41 @@
 </head>
 <body>
 
-<h1>  This functionality not at implemented</h1>
+<h1></h1>
 
 	<h2>Please fill the details</h2>
 
-	<form:form action="../register" method="post">
+	<form:form commandName="user" method="post" action="addus">
 		<table>
-			<tr>
-				<td>User ID:</td>
-				<td><input type="text" name="id"></td>
-			</tr>
+		
 			<tr>
 				<td>User Name:</td>
-				<td><input type="text" name="name"></td>
+				<td><input type="text" name="name" path="username"></td>
 			</tr>
+		
+		<tr>
+				<td>Email ID:</td>
+				<td><input type="email ID" name="email" path="emailid"></td>
+			</tr>
+			
+		
+			
 			<tr>
 				<td>Password:</td>
-				<td><input type="text" name="password"></td>
+				<td><input type="text" name="password" path="password"></td>
 			</tr>
+			
+			<tr>
+				<td> Confirm Password:</td>
+				<td><input type="text" name="password" path="confirmpassword"></td>
+			</tr>
+			
 			<tr>
 				<td>Mobile No:</td>
-				<td><input type="text" name="mobile"></td>
+				<td><input type="text" name="mobile" path="phno"></td>
 			</tr>
+				
 			
-			<tr>
-				<td>Email:</td>
-				<td><input type="email" name="email"></td>
-			</tr>
-			<tr>
-				<td>Address:</td>
-				<td><input type="texta" width="20" height="10" name="address"></td>
-			</tr>
-			
-
 			<tr>
 				<td><input type="submit" value="Register">
 				<td><input type="reset" value="Reset">

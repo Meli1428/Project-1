@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.niit.frontend.dao.temp.UserDao;
 
 //this class we have to convert into a controller (MVC)
 //we have to use simple annotation
@@ -55,17 +54,6 @@ public class HomeController {
 		//if the credentials are valid then we should show welcome to shopping cart
 		//if not correct then message invalid message+login page->both displays in the home page
 		
-		UserDao userDao=new UserDao();
-		if(userDao.isValidCredentials(id, pwd)==true)
-		{
-			mv.addObject("successMsg", "You logged in succesfully");
-		}
-		else
-		{
-			
-			mv.addObject("errorMsg", "invalid credentials.please try again");
-
-		}
 		return mv;
 	}
 	
