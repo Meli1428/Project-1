@@ -50,16 +50,15 @@
 <body>
 	<h1>Adding Products</h1>
 
-	<c:url var="addAction" value="/product/add"></c:url>
 
-	<form:form action="${addAction}" commandName="product">
+	<form:form action="addprod" commandName="product" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td><form:label path="prod_id">
 						<spring:message text="ID" />
 					</form:label></td>
 				<c:choose>
-					<c:when test="${!empty product.id}">
+					<c:when test="${!empty product.prod_id}">
 						<td><form:input path="prod_id" disabled="true" readonly="true" />
 						</td>
 					</c:when>
@@ -95,29 +94,31 @@
 				<td><form:label path="supplier">
 						<spring:message text="Supplier" />
 					</form:label></td>
-				<%-- <td><form:input path="supplier.name" required="true" /></td> --%>
-				 <td><form:select path="supplier.name" items="${supplierList}" itemValue="name" itemLabel="name" /></td>
+				<%-- <td><form:input path="supplier.supname" required="true" /></td> --%>
+				 <td><form:select path="supplier.supname" items="${supplierList}" itemValue="name" itemLabel="name" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="category">
 						<spring:message text="Category" />
 					</form:label></td>
-				<%-- <td><form:input path="category.name" required="true" /></td> --%>
-				<td><form:select path="category.name" items="${categoryList}" itemValue="name" itemLabel="name" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><c:if test="${!empty product.name}">
-						<input type="submit"
-							value="<spring:message text="Edit Product"/>" />
-					</c:if> <c:if test="${empty product.name}">
-						<input type="submit" value="<spring:message text="Add Product"/>" />
-					</c:if></td>
+				<%-- <td><form:input path="category.catname" required="true" /></td> --%>
+				<td><form:select path="category.catname" items="${categoryList}" itemValue="catname" itemLabel="catname" /></td>
 			</tr>
 			
 			<tr>
 				<td>Product Image</td>
 						<td><form:input type="file" path="img"/>
 			</tr>
+			
+			<tr>
+				<td colspan="2"><c:if test="${!empty product.prod_name}">
+						<input type="submit"
+							value="<spring:message text="Edit Product"/>" />
+					</c:if> <c:if test="${empty product.prod_name}">
+						<input type="submit" value="<spring:message text="Add Product"/>" />
+					</c:if></td>
+			</tr>
+			
 			
 					
 			
@@ -139,14 +140,14 @@
 			</tr>
 			<c:forEach items="${productList}" var="product">
 				<tr>
-					<td>${product.id}</td>
-					<td>${product.name}</td>
+					<td>${product.prod_id}</td>
+					<td>${product.prod_name}</td>
 					<td>${product.quantity}</td>
-					<td>${product.price}</td>
-					<td>${product.category.name}</td>
-					<td>${product.supplier.name}</td>
-					<td><a href="<c:url value='product/edit/${product.id}' />">Edit</a></td>
-					<td><a href="<c:url value='product/remove/${product.id}' />">Delete</a></td>
+					<td>${product.prod_price}</td>
+					<td>${product.category.catname}</td>
+					<td>${product.supplier.supname}</td>
+					<td><a href="<c:url value='product/edit/${product.prod_id}' />">Edit</a></td>
+					<td><a href="<c:url value='product/remove/${product.prod_id}' />">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>

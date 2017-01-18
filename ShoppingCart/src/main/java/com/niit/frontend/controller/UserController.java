@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.niit.shoppingcartbackend.dao.UserDAO;
-import com.niit.shoppingcartbackend.model.User;
+import com.niit.shoppingbackend.dao.UserDAO;
+import com.niit.shoppingbackend.model.User;
+
 
 @Controller
 public class UserController {
@@ -24,7 +25,8 @@ public class UserController {
 	public ModelAndView isValidUser(@RequestParam(value="name")String name,@RequestParam(value="password")String password)
 	{
 		System.out.println("in controller");
-		String message;
+		@SuppressWarnings("unused")
+		String message="";
 		ModelAndView mv;
 		if(userDAO.isValid(name, password))
 		{

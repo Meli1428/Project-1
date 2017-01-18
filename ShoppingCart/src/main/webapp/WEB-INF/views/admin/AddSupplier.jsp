@@ -50,16 +50,15 @@
 <body>
 	<h1>Add a Supplier</h1>
 
-	<c:url var="addAction" value="/supplier/add"></c:url>
 
-	<form:form action="${addAction}" commandName="supplier">
+	<form:form action="/admin/addsupp" commandName="supplier">
 		<table>
 			<tr>
 				<td><form:label path="sup_id">
 						<spring:message text="ID" />
 					</form:label></td>
 				<c:choose>
-					<c:when test="${!empty supplier.id}">
+					<c:when test="${!empty supplier.sup_id}">
 						<td><form:input path="sup_id" disabled="true" readonly="true" />
 						</td>
 					</c:when>
@@ -89,10 +88,10 @@
 				<td><form:input path="supdescription" required="true" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><c:if test="${!empty supplier.name}">
+				<td colspan="2"><c:if test="${!empty supplier.supname}">
 						<input type="submit"
 							value="<spring:message text="Edit Supplier"/>" />
-					</c:if> <c:if test="${empty supplier.name}">
+					</c:if> <c:if test="${empty supplier.supname}">
 						<input type="submit" value="<spring:message text="Add Supplier"/>" />
 					</c:if></td>
 			</tr>
@@ -111,11 +110,11 @@
 			</tr>
 			<c:forEach items="${supplierList}" var="supplier">
 				<tr>
-					<td>${supplier.id}</td>
-					<td>${supplier.name}</td>
-					<td>${supplier.address}</td>
-					<td><a href="<c:url value='supplier/edit/${supplier.id}' />">Edit</a></td>
-					<td><a href="<c:url value='supplier/remove/${supplier.id}' />">Delete</a></td>
+					<td>${supplier.sup_id}</td>
+					<td>${supplier.supname}</td>
+					<td>${supplier.supaddress}</td>
+					<td><a href="<c:url value='supplier/edit/${supplier.sup_id}' />">Edit</a></td>
+					<td><a href="<c:url value='supplier/remove/${supplier.sup_id}' />">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>

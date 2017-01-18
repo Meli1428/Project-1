@@ -16,7 +16,7 @@ public class HomeController {
 	@RequestMapping("/") // this is the root which will navigate to the home page
 	public String showHome()
 	{
-		return "HomePage";
+		return "admin/AdminHome";
 	}
 	
 	@RequestMapping("/login") 
@@ -30,15 +30,7 @@ public class HomeController {
 		return mv;
 	}
 	
-	@RequestMapping("/registration") 
-	public ModelAndView showRegistration()
-	{
-		ModelAndView mv=new ModelAndView("HomePage");
-		mv.addObject("msg", "You clicked on Registration link");
-		mv.addObject("showRegistration", "true");
-
-		return mv;
-	}
+	
 	
 	@RequestMapping("/validate")
 	public ModelAndView validate(@RequestParam("id") String id, @RequestParam("password") String pwd)

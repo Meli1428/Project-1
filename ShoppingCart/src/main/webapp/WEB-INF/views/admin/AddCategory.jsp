@@ -50,16 +50,15 @@
 <body>
 	<h1>Add a Category</h1>
 
-	<c:url var="addAction" value="/category/add"></c:url>
 
-	<form:form action="${addAction}" commandName="category">
+	<form:form action="/admin/addcat" commandName="category" >
 		<table>
 			<tr>
 				<td><form:label path="cat_id">
 						<spring:message text="ID" />
 					</form:label></td>
 				<c:choose>
-					<c:when test="${!empty category.id}">
+					<c:when test="${!empty category.cat_id}">
 						<td><form:input path="cat_id" disabled="true" readonly="true" />
 						</td>
 					</c:when>
@@ -71,7 +70,7 @@
 				<td><form:label path="catname">
 						<spring:message text="Name" />
 					</form:label></td>
-				<td><form:input path="catname" required="true" /></td>
+				<td><form:input path="catname" required="true" name="c1"/></td>
 			</tr>
 			<tr>
 				<td><form:label path="catdescription">
@@ -80,10 +79,10 @@
 				<td><form:input path="catdescription" required="true" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><c:if test="${!empty category.name}">
+				<td colspan="2"><c:if test="${!empty category.catname}">
 						<input type="submit"
 							value="<spring:message text="Edit Category"/>" />
-					</c:if> <c:if test="${empty category.name}">
+					</c:if> <c:if test="${empty category.catname}">
 						<input type="submit" value="<spring:message text="Add Category"/>" />
 					</c:if></td>
 			</tr>
@@ -102,11 +101,11 @@
 			</tr>
 			<c:forEach items="${categoryList}" var="category">
 				<tr>
-					<td>${category.id}</td>
-					<td>${category.name}</td>
-					<td>${category.description}</td>
-					<td><a href="<c:url value='category/edit/${category.id}' />">Edit</a></td>
-					<td><a href="<c:url value='category/remove/${category.id}' />">Delete</a></td>
+					<td>${category.cat_id}</td>
+					<td>${category.catname}</td>
+					<td>${category.catdescription}</td>
+					<td><a href="<c:url value='category/edit/${category.cat_id}' />">Edit</a></td>
+					<td><a href="<c:url value='category/remove/${category.cat_id}' />">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>

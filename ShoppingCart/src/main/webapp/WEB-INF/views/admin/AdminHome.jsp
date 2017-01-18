@@ -25,9 +25,9 @@
 <img src="resources/images/pic4.jpg">
 </div>
 <h4>Welcome Admin, </h4> <br><br>
-<a href="addCategory"><button type="button" class="btn btn-success btn-lg">Category</button></a> 
-<a href="addSupplier"><button type="button" class="btn btn-success btn-lg">Supplier</button></a> 
-<a href="addProduct"><button type="button" class="btn btn-success btn-lg">Product</button></a>  
+<a href="admin/AddCategory"><button type="button" class="btn btn-success btn-lg">Category</button></a> 
+<a href="admin/AddSupplier"><button type="button" class="btn btn-success btn-lg">Supplier</button></a> 
+<a href="admin/AddProduct"><button type="button" class="btn btn-success btn-lg">Product</button></a>  
 
 
 <br>
