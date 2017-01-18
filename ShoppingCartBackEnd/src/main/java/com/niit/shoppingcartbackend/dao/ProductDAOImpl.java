@@ -1,4 +1,4 @@
-package com.niit.shoppingcartbackend.dao;
+package com.niit.shoppingbackend.dao;
 
 import java.util.List;
 
@@ -7,12 +7,18 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.niit.shoppingcartbackend.model.Product;
+import com.niit.shoppingbackend.model.Product;
+
 
 public class ProductDAOImpl implements ProductDAO
 
 {
 	
+	public ProductDAOImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Autowired
 	SessionFactory sessionfactory;
 

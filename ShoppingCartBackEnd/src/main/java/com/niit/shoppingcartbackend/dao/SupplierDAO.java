@@ -1,12 +1,9 @@
-package com.niit.shoppingcartbackend.dao;
+package com.niit.shoppingbackend.dao;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import com.niit.shoppingbackend.model.Supplier;
 
-import com.niit.shoppingcartbackend.model.Supplier;
-
-@Repository
 
 public interface SupplierDAO {
 	

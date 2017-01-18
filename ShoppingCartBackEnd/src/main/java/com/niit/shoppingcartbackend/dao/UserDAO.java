@@ -1,12 +1,9 @@
-package com.niit.shoppingcartbackend.dao;
+package com.niit.shoppingbackend.dao;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import com.niit.shoppingbackend.model.User;
 
-import com.niit.shoppingcartbackend.model.User;
-
-@Repository
 public interface UserDAO {
 	
 	public boolean isValid(String id,String password); //checking whether the credentials are valid or not

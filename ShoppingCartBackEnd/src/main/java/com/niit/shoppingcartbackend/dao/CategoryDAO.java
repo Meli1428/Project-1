@@ -1,12 +1,10 @@
-package com.niit.shoppingcartbackend.dao;
+package com.niit.shoppingbackend.dao;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import com.niit.shoppingbackend.model.Category;
 
-import com.niit.shoppingcartbackend.model.Category;
 
-@Repository
 public interface CategoryDAO {
 	
 	public Category getByName(String name);

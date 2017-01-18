@@ -1,5 +1,4 @@
-package com.niit.shoppingcartbackend.dao;
-
+package com.niit.shoppingbackend.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -11,11 +10,17 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.shoppingcartbackend.model.User;
+import com.niit.shoppingbackend.model.User;
+
 
 @Repository(value="userDAO")
 @EnableTransactionManagement
 public class UserDAOImpl implements UserDAO{
+
+		public UserDAOImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 		@Autowired
 		private SessionFactory sessionfactory;
@@ -55,6 +60,7 @@ public class UserDAOImpl implements UserDAO{
 		
 
 		public List<User> list() {
+			@SuppressWarnings("unchecked")
 			List<User>list=(List<User>)sessionfactory.getCurrentSession().createCriteria(User.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 			return list;
 		}

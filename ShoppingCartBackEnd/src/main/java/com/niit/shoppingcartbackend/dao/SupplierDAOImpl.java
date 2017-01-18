@@ -1,4 +1,4 @@
-package com.niit.shoppingcartbackend.dao;
+package com.niit.shoppingbackend.dao;
 
 import java.util.List;
 
@@ -10,13 +10,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.shoppingcartbackend.model.Supplier;
+import com.niit.shoppingbackend.model.Supplier;
+
 
 @Repository(value="supplierDAO")
 @EnableTransactionManagement
 
 public class SupplierDAOImpl implements SupplierDAO {
 	
+	public SupplierDAOImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 	@Autowired
 	private SessionFactory sessionfactory;
 
@@ -45,7 +52,11 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}
 
 	public List<Supplier> list() {
-		List<Supplier>list=(List<Supplier>)sessionfactory.getCurrentSession().createCriteria(Supplier.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		@SuppressWarnings("unchecked")
+		Session s=sessionfactory.getCurrentSession();
+		Transaction t=s.beginTransaction();
+		List<Supplier>list=(List<Supplier>)s.createCriteria(Supplier.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		t.commit();
 		return list;		
 	}
 
