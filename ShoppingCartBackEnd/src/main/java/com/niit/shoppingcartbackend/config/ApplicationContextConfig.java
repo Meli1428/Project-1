@@ -1,5 +1,4 @@
-package com.niit.shoppingcartbackend.config;
-
+package com.niit.shoppingbackend.config;
 
 import java.util.Properties;
 
@@ -11,21 +10,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.shoppingcartbackend.dao.CategoryDAO;
-import com.niit.shoppingcartbackend.dao.CategoryDAOImpl;
-import com.niit.shoppingcartbackend.dao.SupplierDAO;
-import com.niit.shoppingcartbackend.dao.SupplierDAOImpl;
-import com.niit.shoppingcartbackend.dao.UserDAO;
-import com.niit.shoppingcartbackend.dao.UserDAOImpl;
-import com.niit.shoppingcartbackend.model.Category;
-import com.niit.shoppingcartbackend.model.Product;
-import com.niit.shoppingcartbackend.model.Supplier;
-import com.niit.shoppingcartbackend.model.User;
-
+import com.niit.shoppingbackend.dao.CategoryDAO;
+import com.niit.shoppingbackend.dao.CategoryDAOImpl;
+import com.niit.shoppingbackend.dao.ProductDAO;
+import com.niit.shoppingbackend.dao.ProductDAOImpl;
+import com.niit.shoppingbackend.dao.SupplierDAO;
+import com.niit.shoppingbackend.dao.SupplierDAOImpl;
+import com.niit.shoppingbackend.dao.UserDAO;
+import com.niit.shoppingbackend.dao.UserDAOImpl;
+import com.niit.shoppingbackend.model.Category;
+import com.niit.shoppingbackend.model.Product;
+import com.niit.shoppingbackend.model.Supplier;
+import com.niit.shoppingbackend.model.User;
 
 @Configuration
 @ComponentScan("com")
@@ -38,7 +38,7 @@ public class ApplicationContextConfig
 	{
 		BasicDataSource dataSource=new BasicDataSource();
 		dataSource.setDriverClassName("org.h2.Driver");
-		dataSource.setUrl("jdbc:h2:tcp://localhost/~/melinda");
+		dataSource.setUrl("jdbc:h2:tcp://localhost/~/DT12");
 		dataSource.setUsername("sa");
 		dataSource.setPassword("");
 		System.out.println("data source");
@@ -139,6 +139,22 @@ public class ApplicationContextConfig
 			System.out.println("supplier");
 		
 			return new Supplier();
+		}
+		@Autowired
+		@Bean(name="productDAO")
+		public ProductDAO getProductDAO(SessionFactory sessionfactory)
+		{
+			System.out.println("product dao wired ");
+			return new ProductDAOImpl(sessionfactory);
+		}
+			
+		@Autowired
+		@Bean(name="product")
+		public Product getProduct()
+		{
+			System.out.println("product");
+		
+			return new Product();
 		}
 	
 }
