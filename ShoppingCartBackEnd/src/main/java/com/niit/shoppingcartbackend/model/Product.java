@@ -1,4 +1,4 @@
-package com.niit.shoppingcartbackend.model;
+package com.niit.shoppingbackend.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

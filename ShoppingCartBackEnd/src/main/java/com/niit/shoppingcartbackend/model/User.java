@@ -1,4 +1,4 @@
-package com.niit.shoppingcartbackend.model;
+package com.niit.shoppingbackend.model;
 
 import javax.persistence.Entity;
 
@@ -16,84 +16,93 @@ import javax.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table //if the table name and the domain object name is same
-@Component //user instance   //do not user User u=new User()
+@Table
 
-public class User {
-	
-	
-	@Id //
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int user_id;
-	
+
+public class User{
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+
+	private int userid;
 	@NotNull(message="Name should not be empty")
 	private String username;
 	
-	@NotNull(message="Password should be 5 to 6 characters")
+	@NotNull(message="Enter valid password")	
 	private String password;
-	
-	@Transient /*not to store to DB*/
+	@Transient
+	@NotNull(message="Enter valid password")		
 	private String confirmpassword;
 	
-	//enabled refers if user is enabled or not
-	private String enabled;
-	
-	@NotNull(message="Enter valid email")
+	@NotNull(message="Enter valid id")		
 	private String emailid;
 	
-	@NotNull(message="Enter valid number")
+	@NotNull(message="Enter valid phone number")		
 	private String phno;
-	
+	private String enabled;
 	private String role;
-	
-	public int getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getConfirmpassword() {
-		return confirmpassword;
-	}
-	public void setConfirmpassword(String confirmpassword) {
-		this.confirmpassword = confirmpassword;
-	}
-	public String getEnabled() {
-		return enabled;
-	}
-	public String getPhno() {
-		return phno;
-	}
-	public void setPhno(String phno) {
-		this.phno = phno;
-	}
+
 	public String getRole() {
 		return role;
 	}
+
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public void setEnabled(String enabled) {
-		this.enabled = enabled;
+
+	public int getUserid() {
+		return userid;
 	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getConfirmpassword() {
+		return confirmpassword;
+	}
+
+	public void setConfirmpassword(String confirmpassword) {
+		this.confirmpassword = confirmpassword;
+	}
+
 	public String getEmailid() {
 		return emailid;
 	}
+
 	public void setEmailid(String emailid) {
 		this.emailid = emailid;
 	}
-	
-	
+
+	public String getPhno() {
+		return phno;
+	}
+
+	public void setPhno(String phno) {
+		this.phno = phno;
+	}
+
+	public String getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
+
 }
