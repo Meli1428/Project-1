@@ -21,6 +21,9 @@
       width: 70%;
       margin: auto;
   }
+  body {
+    background-color:orange;
+}
  
 </style>
 </head>
@@ -38,7 +41,7 @@
       <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
       <li><a href="#">About Us</a></li>
-      <li><a href="#">Page 3</a></li>
+      <li><a href="#">Contact US</a></li>
     </ul>
   </div>
 </nav>
@@ -55,19 +58,23 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="resources/images/art-painting-sad-tears-Favim.com-1999220.jpg" alt="Chania">
+      <img src="resources/images/2.png"">
     </div>
 
     <div class="item">
-      <img src="resources/images/black-and-white-portraits-of-faces-painted-black-and-white-7.jpg" alt="Chania">
+      <img src="resources/images/3.png">
     </div>
 
     <div class="item">
-      <img src="resources/images/images.jpg" alt="Flower">
+      <img src="resources/images/4.png">
     </div>
 
     <div class="item">
-      <img src="resources/images/index.jpg" alt="Flower">
+      <img src="resources/images/5.png">
+    </div>
+    
+    <div class="item">
+      <img src="resources/images/6.jpg">
     </div>
   </div>
 
@@ -81,6 +88,42 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+
+<!-- <style>
+/* .parallax {
+    /* The image used */
+    background-image: url("resources/images/Street-Artist-Transformed-Buildings-into-Works-of-Art-3.jpg");
+
+    /* Set a specific height */
+    min-height: 500px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+ -->
+ 
+ <div style="background-color: powderblue";
+     height: 200px;
+    width: 50%;
+class="parallax">
+        <div class="container" style="padding:15% 0;" >
+        <centre>
+              <img src="resources/images/Street-Artist-Transformed-Buildings-into-Works-of-Art-3.jpg" width="1000" height="345">
+        </centre>
+        
+        <div style="color:yellow"class="carousel-caption">
+          <h2 >Every art</h2><br>
+          <h3>has a story, has a feeling,is a unique creation.</h3>
+        </div>
+        </div>
+    </div>
+
+
+<!-- </style>
+ -->    
 
 <!-- if the user logged in, these links should not be displayed
 
