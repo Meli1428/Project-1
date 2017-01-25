@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.model.Category;
-import com.niit.shoppingbackend.model.Product;
 
 
 
@@ -39,9 +38,9 @@ public class CategoryController {
 
 		}
 
-		@RequestMapping("/admin/AddCategory")
+		@RequestMapping("/AddCategory")
 		public ModelAndView ShowAddCategory(Model model) {
-			ModelAndView mv = new ModelAndView("admin/AddCategory");
+			ModelAndView mv = new ModelAndView("AddCategory");
 
 			model.addAttribute("categoryList", categoryDAO.list());
 			System.out.println("added category details  in controller");
@@ -53,18 +52,18 @@ public class CategoryController {
 		 * action of addcategory
 		 */
 
-		@RequestMapping(value = "/addcat", method = RequestMethod.POST)
+		@RequestMapping(value = "/addcate", method = RequestMethod.POST)
 		public String addCate(@Valid @ModelAttribute("category") Category cate,
-				Model model, BindingResult result,@RequestParam("c1")String cdesc,
+				Model model, BindingResult result,
 				HttpServletRequest request) throws IOException {
 			//if (cate.getCatname().equals(cdesc)) {
 				// new category, add it
 
-				categoryDAO.saveOrUpdate(cate);
+				categoryDAO.update(cate);
 				System.out.println("adding of new category in controller");
 			//} 
 
-			return "redirect:admin/AddCategory";
+			return "redirect:AddCategory";
 
 		}
 

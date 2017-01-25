@@ -1,9 +1,15 @@
 package com.niit.frontend.controller;
 
+import java.util.Collection;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,4 +76,56 @@ public class UserController {
 	return "login";
 }
 
+	 //security check for login 
+
+	/*@RequestMapping(value = "/login_session_attributes")
+	 //getting values from textbox 
+
+	public String login_session_attributes(HttpSession session, Model model,
+			@RequestParam(value = "username") String id) {
+		String name = SecurityContextHolder.getContext().getAuthentication().getName();
+
+		System.out.println("inside security check");
+
+		session.setAttribute("name", name);
+		System.out.println(name);
+
+		user = userDAO.get(id);
+		int x = user.getUser_id();
+		session.setAttribute("email",user.getEmailid());
+		session.setAttribute("loggedInUser", user.getUsername());
+
+		System.out.println("x value is"+x);
+		session.setAttribute("loggedInUserID", x);
+
+		session.setAttribute("LoggedIn", "true");
+
+		
+		
+		
+		
+		
+		@SuppressWarnings("unchecked")
+		 //getting values from database 
+		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) SecurityContextHolder.getContext()
+				.getAuthentication().getAuthorities();
+
+		String role = "ROLE_USER";
+		for (GrantedAuthority authority : authorities) {
+			 //comparing both the values from txtbox and database 
+			if (authority.getAuthority().equals(role)) {
+				System.out.println(role);
+
+				return "viewproducts";
+			} else {
+				session.setAttribute("isAdmin", "true");
+			}
+		}
+		return "AdminHome";
+
+	
+
+}*/
 }
+
+

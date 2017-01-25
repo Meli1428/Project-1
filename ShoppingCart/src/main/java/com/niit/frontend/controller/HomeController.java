@@ -16,7 +16,7 @@ public class HomeController {
 	@RequestMapping("/") // this is the root which will navigate to the home page
 	public String showHome()
 	{
-		return "admin/AdminHome";
+		return "AdminHome";
 	}
 	
 	@RequestMapping("/login") 

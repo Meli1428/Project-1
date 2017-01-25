@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingbackend.dao.SupplierDAO;
@@ -36,9 +37,9 @@ public class SupplierController {
 
 	}
 
-	@RequestMapping("/admin/AddSupplier")
+	@RequestMapping("/AddSupplier")
 	public ModelAndView ShowAddSupplier(Model model) {
-		ModelAndView mv = new ModelAndView("admin/AddSupplier");
+		ModelAndView mv = new ModelAndView("AddSupplier");
 
 		model.addAttribute("supplierList", supplierDAO.list());
 		System.out.println("added supplier details  in controller");
@@ -51,13 +52,13 @@ public class SupplierController {
 	public String addSupp(@Valid @ModelAttribute("supplier") Supplier su,
 	Model model, BindingResult result,
 	HttpServletRequest request) throws IOException {
-		if (su.getSup_id()==0) {
+		//if (su.getSup_id()==0) {
 			// new supplier, add it
 
 			supplierDAO.saveOrUpdate(su);
 			System.out.println("adding of new supplier in controller");
-		} 
-		return "redirect:admin/AddSupplier";
+		//} 
+		return "redirect:AddSupplier";
 
 	}
 
