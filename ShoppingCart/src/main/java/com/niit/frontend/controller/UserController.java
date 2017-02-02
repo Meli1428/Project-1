@@ -5,6 +5,9 @@ import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +30,12 @@ public class UserController {
 	@Autowired
 	UserDAO userDAO;
 	
+	@Autowired
+	User user;
+	
+	@Autowired
+	SessionFactory sessionfactory;
+	
 	@RequestMapping("/isValidUser")
 	public ModelAndView isValidUser(@RequestParam(value="name")String name,@RequestParam(value="password")String password)
 	{
@@ -37,7 +46,7 @@ public class UserController {
 		if(userDAO.isValid(name, password))
 		{
 			message="valid credentials";
-			mv=new ModelAndView("adminHome");
+			mv=new ModelAndView("AdminHome");
 		}
 		else
 		{
@@ -55,77 +64,111 @@ public class UserController {
 		return mv;
 	}
 	
+	
 	@ModelAttribute
 	public User returnObject()
 	{
 		return new User(); 
 	}
 	 //After clicking submit this page with data is opened and is sent to addus page
-	@RequestMapping(value= "/addus",method=RequestMethod.POST) 
-	public String addUser(@ModelAttribute("user") User user,BindingResult result,HttpServletRequest request)
-{
-	System.out.println(user.getConfirmpassword());
-	System.out.println(user.getPassword());
-	user.setEnabled("true");
-	user.setRole("ROLE_USER");
-	if(user.getConfirmpassword().equals(user.getPassword()))
+	@RequestMapping(value = "/addus", method = RequestMethod.POST)
+	public String addUser(@ModelAttribute("user") User user, BindingResult result, HttpServletRequest request)
+
 	{
-		userDAO.saveOrUpdate(user);
+
+		System.out.print(user.getConfirmpassword());
+		System.out.println(user.getPassword());
+
+		user.setEnabled("true");
+		user.setRole("ROLE_USER");
+
+		if (user.getConfirmpassword().equals(user.getPassword()));
+
+		{
+
+			userDAO.saveOrUpdate(user);
+
+		}
+
+		return "login";
+
 	}
-	
-	return "login";
-}
 
-	 //security check for login 
+	/* security check for login */
 
-	/*@RequestMapping(value = "/login_session_attributes")
-	 //getting values from textbox 
+	@RequestMapping(value = "/login_session_attributes")
+	/* getting values from textbox */
 
-	public String login_session_attributes(HttpSession session, Model model,
-			@RequestParam(value = "username") String id) {
+	public String login_session_attributes(HttpSession session, Model model, @RequestParam(value = "username") String id)
+
+	{
+
+		
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-
-		System.out.println("inside security check");
-
-		session.setAttribute("name", name);
+        System.out.println("inside security check");
+        session.setAttribute("name", name);
 		System.out.println(name);
-
-		user = userDAO.get(id);
+		Session s=sessionfactory.getCurrentSession();
+		Transaction t=s.beginTransaction();
+        user = userDAO.get(name);
 		int x = user.getUser_id();
-		session.setAttribute("email",user.getEmailid());
+		session.setAttribute("email", user.getEmailid());
 		session.setAttribute("loggedInUser", user.getUsername());
 
-		System.out.println("x value is"+x);
+		System.out.println("x value is" + x);
 		session.setAttribute("loggedInUserID", x);
 
 		session.setAttribute("LoggedIn", "true");
 
-		
-		
-		
-		
-		
 		@SuppressWarnings("unchecked")
-		 //getting values from database 
-		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) SecurityContextHolder.getContext()
-				.getAuthentication().getAuthorities();
+		/* getting values from database */
+		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>)
+
+		SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
 		String role = "ROLE_USER";
-		for (GrantedAuthority authority : authorities) {
-			 //comparing both the values from txtbox and database 
-			if (authority.getAuthority().equals(role)) {
+		for (GrantedAuthority authority : authorities)
+
+		{
+
+			/* comparing both the values from txtbox and database */
+			if (authority.getAuthority().equals(role))
+
+			{
+
 				System.out.println(role);
 
-				return "viewproducts";
-			} else {
-				session.setAttribute("isAdmin", "true");
+				return "HomePage";
+
 			}
+
+			
+			else
+
+				session.setAttribute("isAdmin", "true");
+
 		}
+		t.commit();
 		return "AdminHome";
 
+	}
 	
+	@RequestMapping("/perform_logout")
+	public ModelAndView showLogout(HttpServletRequest request, HttpSession session)
 
-}*/
+	{
+
+		System.out.println("logout");
+		ModelAndView mv = new ModelAndView("HomePage");
+		session.invalidate();
+		session = request.getSession(true);
+		// Category category=new Category();
+		mv.addObject("logOutMessage", "u hv successfully logged out..");
+		mv.addObject("loggedOut", "true");
+
+		return mv;
+
+	}
 }
 
 
