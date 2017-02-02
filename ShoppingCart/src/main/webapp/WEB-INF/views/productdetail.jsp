@@ -1,0 +1,44 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ include file="header.jsp"%>
+<title>Insert title here</title>
+<div>
+	<div class="container">
+		
+			<hr>
+			<table class="table table-striped">
+				<tr>
+					<th>Id</th>
+					<th>Product Name</th>
+					<th>Product Price</th>
+					<th>Quantity</th>
+					<th>Product Image</th>
+				</tr>
+				<tr>
+					<td>${product.prod_id }</td>
+					<td>${product.prod_name }</td>
+					<td>${product.prod_price }</td>
+					<td>${product.quantity }</td>
+					<!-- Individual product details -->
+
+					<td><img src="resources/images/${product.prod_name}.jpg"
+						style="height: 100px; width: 100px;"></td>
+					<td><%-- <a href="buy${user_id}&${prod_id}">Add to cart</a> --%>
+					
+					<form  method="POST" action="buy${product.prod_id}" >
+<input type="submit" value="Buy" class="btn btn-warning shadow" style="font-size:19px;margin:30px 30px"/>
+</form>
+					
+					</td>
+				</tr>
+
+			</table>
+			<div>
+			<center>
+				<a href="products">Back</a>
+			</center>
+		</div>
+		</div>
+		</div>
+<%@ include file="footer.jsp"%>
+
