@@ -1,9 +1,11 @@
-package com.niit.shoppingcartbackend.app1;
+package com.niit.shoppingback;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.shoppingcartbackend.dao.CategoryDAO;
-import com.niit.shoppingcartbackend.model.Category;
+import com.niit.shoppingbackend.dao.CategoryDAO;
+import com.niit.shoppingbackend.model.Category;
+
+
 
 public class CategoryTest {
 
